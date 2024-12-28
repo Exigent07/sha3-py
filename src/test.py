@@ -1,6 +1,7 @@
 from sha3 import sha3_256, sha3_224, sha3_384
 import hashlib
 
+print("Testing SHA3-256:")
 test_string = "Testing"
 test_bytes = test_string.encode()
 
@@ -12,11 +13,10 @@ sha.update(test_bytes)
 hash_value_lib = sha.hexdigest()
 print(f"[+] Library: {hash_value_lib}")
 
-# Compare results
 if hash_value_lib == hash_value_implementation:
-    print("[+] Test Passed: Both hashes match.")
+    print("[+] Test Passed: Both SHA3-256 hashes match.")
 else:
-    print("[!] Test Failed: Hashes do not match.")
+    print("[!] Test Failed: SHA3-256 hashes do not match.")
 
 print("\nTesting SHA3-224:")
 hash_value_implementation_224 = sha3_224(test_bytes)
