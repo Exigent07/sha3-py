@@ -1,43 +1,54 @@
 from sha3 import sha3_256, sha3_224, sha3_384
 import hashlib
+import timeit
 
-print("Testing SHA3-256:")
 test_string = "Testing"
 test_bytes = test_string.encode()
 
-hash_value_implementation = sha3_256(test_bytes)
-print(f"[+] Implemented: {hash_value_implementation}")
+print("[*] Testing SHA3-256:")
+def implemented_sha3_256():
+    return sha3_256(test_bytes)
 
-sha = hashlib.sha3_256()
-sha.update(test_bytes)
-hash_value_lib = sha.hexdigest()
-print(f"[+] Library: {hash_value_lib}")
+def library_sha3_256():
+    sha = hashlib.sha3_256()
+    sha.update(test_bytes)
+    return sha.hexdigest()
 
-if hash_value_lib == hash_value_implementation:
-    print("[+] Test Passed: Both SHA3-256 hashes match.")
-else:
-    print("[!] Test Failed: SHA3-256 hashes do not match.")
+implemented_time_256 = timeit.timeit(implemented_sha3_256, number=10000)
+library_time_256 = timeit.timeit(library_sha3_256, number=10000)
 
-print("\nTesting SHA3-224:")
-hash_value_implementation_224 = sha3_224(test_bytes)
-sha224 = hashlib.sha3_224()
-sha224.update(test_bytes)
-hash_value_lib_224 = sha224.hexdigest()
-print(f"[+] Implemented: {hash_value_implementation_224}")
-print(f"[+] Library: {hash_value_lib_224}")
-if hash_value_lib_224 == hash_value_implementation_224:
-    print("[+] Test Passed: Both SHA3-224 hashes match.")
-else:
-    print("[!] Test Failed: SHA3-224 hashes do not match.")
+print(f"[+] Implemented SHA3-256 time: {implemented_time_256:.6f} seconds")
+print(f"[+] Library SHA3-256 time: {library_time_256:.6f} seconds")
+print(f"[*] Efficiency Ratio (Implemented/Library): {implemented_time_256/library_time_256:.2f}")
 
-print("\nTesting SHA3-384:")
-hash_value_implementation_384 = sha3_384(test_bytes)
-sha384 = hashlib.sha3_384()
-sha384.update(test_bytes)
-hash_value_lib_384 = sha384.hexdigest()
-print(f"[+] Implemented: {hash_value_implementation_384}")
-print(f"[+] Library: {hash_value_lib_384}")
-if hash_value_lib_384 == hash_value_implementation_384:
-    print("[+] Test Passed: Both SHA3-384 hashes match.")
-else:
-    print("[!] Test Failed: SHA3-384 hashes do not match.")
+print("\n[*] Testing SHA3-224:")
+def implemented_sha3_224():
+    return sha3_224(test_bytes)
+
+def library_sha3_224():
+    sha = hashlib.sha3_224()
+    sha.update(test_bytes)
+    return sha.hexdigest()
+
+implemented_time_224 = timeit.timeit(implemented_sha3_224, number=10000)
+library_time_224 = timeit.timeit(library_sha3_224, number=10000)
+
+print(f"[+] Implemented SHA3-224 time: {implemented_time_224:.6f} seconds")
+print(f"[+] Library SHA3-224 time: {library_time_224:.6f} seconds")
+print(f"[*] Efficiency Ratio (Implemented/Library): {implemented_time_224/library_time_224:.2f}")
+
+print("\n[*] Testing SHA3-384:")
+def implemented_sha3_384():
+    return sha3_384(test_bytes)
+
+def library_sha3_384():
+    sha = hashlib.sha3_384()
+    sha.update(test_bytes)
+    return sha.hexdigest()
+
+implemented_time_384 = timeit.timeit(implemented_sha3_384, number=10000)
+library_time_384 = timeit.timeit(library_sha3_384, number=10000)
+
+print(f"[+] Implemented SHA3-384 time: {implemented_time_384:.6f} seconds")
+print(f"[+] Library SHA3-384 time: {library_time_384:.6f} seconds")
+print(f"[*] Efficiency Ratio (Implemented/Library): {implemented_time_384/library_time_384:.2f}")
