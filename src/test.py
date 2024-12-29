@@ -14,6 +14,15 @@ def library_sha3_256():
     sha.update(test_bytes)
     return sha.hexdigest()
 
+implemented_hash_256 = implemented_sha3_256()
+library_hash_256 = library_sha3_256()
+print(f"[+] Hash Output (Implemented): {implemented_hash_256}")
+print(f"[+] Hash Output (Library): {library_hash_256}")
+if implemented_hash_256 == library_hash_256:
+    print("[+] Test Passed: SHA3-256 outputs match.")
+else:
+    print("[-] Test Failed: SHA3-256 outputs do not match.")
+
 implemented_time_256 = timeit.timeit(implemented_sha3_256, number=10000)
 library_time_256 = timeit.timeit(library_sha3_256, number=10000)
 
@@ -30,6 +39,15 @@ def library_sha3_224():
     sha.update(test_bytes)
     return sha.hexdigest()
 
+implemented_hash_224 = implemented_sha3_224()
+library_hash_224 = library_sha3_224()
+print(f"[+] Hash Output (Implemented): {implemented_hash_224}")
+print(f"[+] Hash Output (Library): {library_hash_224}")
+if implemented_hash_224 == library_hash_224:
+    print("[+] Test Passed: SHA3-224 outputs match.")
+else:
+    print("[-] Test Failed: SHA3-224 outputs do not match.")
+
 implemented_time_224 = timeit.timeit(implemented_sha3_224, number=10000)
 library_time_224 = timeit.timeit(library_sha3_224, number=10000)
 
@@ -45,6 +63,15 @@ def library_sha3_384():
     sha = hashlib.sha3_384()
     sha.update(test_bytes)
     return sha.hexdigest()
+
+implemented_hash_384 = implemented_sha3_384()
+library_hash_384 = library_sha3_384()
+print(f"[+] Hash Output (Implemented): {implemented_hash_384}")
+print(f"[+] Hash Output (Library): {library_hash_384}")
+if implemented_hash_384 == library_hash_384:
+    print("[+] Test Passed: SHA3-384 outputs match.")
+else:
+    print("[-] Test Failed: SHA3-384 outputs do not match.")
 
 implemented_time_384 = timeit.timeit(implemented_sha3_384, number=10000)
 library_time_384 = timeit.timeit(library_sha3_384, number=10000)
